@@ -19,7 +19,6 @@ steps:
 - script: |
     npm install
     npm run build
-    npm start
   displayName: 'Install dependencies and build'
 
 - task: ArchiveFiles@2
@@ -29,10 +28,10 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
-  displayName: 'Archive files'
+  displayName: 'Archive build folder'
 
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'drop'
-  displayName: 'Publish artifacts'
+  displayName: 'Publish build artifacts'
